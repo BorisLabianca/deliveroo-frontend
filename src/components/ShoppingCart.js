@@ -1,6 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ShoppingCart = ({ shoppingCart, setShoppingCart }) => {
+const ShoppingCart = ({
+  shoppingCart,
+  setShoppingCart,
+  subTotal,
+  setSubTotal,
+  bigTotal,
+  setBigTotal,
+  deliveryFees,
+}) => {
   return (
     <div className="basket-section">
       {shoppingCart.length !== 0 ? (
@@ -25,9 +33,25 @@ const ShoppingCart = ({ shoppingCart, setShoppingCart }) => {
                             item.price * newShoppingCart[index].quantity;
                           newShoppingCart[index].total = newTotal.toFixed(2);
                           setShoppingCart(newShoppingCart);
+                          const intSubTotal =
+                            parseFloat(subTotal) - parseFloat(item.price);
+                          const newSubTotal = intSubTotal.toFixed(2);
+                          setSubTotal(newSubTotal);
+                          const intBigTotal =
+                            parseFloat(newSubTotal) + parseFloat(deliveryFees);
+                          const newBigTotal = intBigTotal.toFixed(2);
+                          setBigTotal(newBigTotal);
                         } else {
                           newShoppingCart.splice([index], 1);
                           setShoppingCart(newShoppingCart);
+                          const intSubTotal =
+                            parseFloat(subTotal) - parseFloat(item.price);
+                          const newSubTotal = intSubTotal.toFixed(2);
+                          setSubTotal(newSubTotal);
+                          const intBigTotal =
+                            parseFloat(newSubTotal) + parseFloat(deliveryFees);
+                          const newBigTotal = intBigTotal.toFixed(2);
+                          setBigTotal(newBigTotal);
                         }
                       }}
                     />
@@ -45,6 +69,14 @@ const ShoppingCart = ({ shoppingCart, setShoppingCart }) => {
                           item.price * newShoppingCart[index].quantity;
                         newShoppingCart[index].total = newTotal.toFixed(2);
                         setShoppingCart(newShoppingCart);
+                        const intSubTotal =
+                          parseFloat(item.price) + parseFloat(subTotal);
+                        const newSubTotal = intSubTotal.toFixed(2);
+                        setSubTotal(newSubTotal);
+                        const intBigTotal =
+                          parseFloat(newSubTotal) + parseFloat(deliveryFees);
+                        const newBigTotal = intBigTotal.toFixed(2);
+                        setBigTotal(newBigTotal);
                       }}
                     />
                   </div>
@@ -53,6 +85,20 @@ const ShoppingCart = ({ shoppingCart, setShoppingCart }) => {
                 </div>
               );
             })}
+          </div>
+          <div className="sous-totaux">
+            <div className="sous-total">
+              <span>Sous-total</span>
+              <span>{subTotal} €</span>
+            </div>
+            <div className="livraison">
+              <span>Frais de livraison</span>
+              <span>2.50 €</span>
+            </div>
+          </div>
+          <div className="total">
+            <span>Total</span>
+            <span>{bigTotal} €</span>
           </div>
         </div>
       ) : (

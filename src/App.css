@@ -81,6 +81,7 @@ main {
   background-color: #bac3c3;
   color: #8b9a9b;
   font-size: 16px;
+  cursor: not-allowed;
 }
 .empty-basket .cart-content {
   background-color: white;
@@ -122,13 +123,14 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 30px 0;
+  padding: 15px 0;
+  border-bottom: 1px solid #d1d7d7;
 }
 .cart-item {
   display: flex;
   width: 98%;
   justify-content: space-between;
-  margin-bottom: 30px;
+  padding: 16px;
 }
 .item-counter {
   width: 25%;
@@ -149,6 +151,31 @@ main {
 }
 .item-counter .plus-btn {
   color: #02cdbd;
+}
+.sous-totaux {
+  border-bottom: 1px solid #d1d7d7;
+  width: 95%;
+}
+.sous-total {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.total {
+  display: flex;
+  width: 95%;
+  margin: 0 10px;
+  justify-content: space-between;
+  padding: 21px 0;
+  font-size: 19px;
+  font-weight: 700;
+}
+.livraison {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 8px 0;
 }
 .categories h2 {
   font-size: 24px;

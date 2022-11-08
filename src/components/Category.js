@@ -1,5 +1,15 @@
 import MenuItemCard from "./MenuItemCard";
-const Category = ({ name, meals, shoppingCart, setShoppingCart }) => {
+const Category = ({
+  name,
+  meals,
+  shoppingCart,
+  setShoppingCart,
+  subTotal,
+  setSubTotal,
+  bigTotal,
+  setBigTotal,
+  deliveryFees,
+}) => {
   return (
     <div className="each-category">
       <h2 className="restaurant-name">{name}</h2>
@@ -18,6 +28,11 @@ const Category = ({ name, meals, shoppingCart, setShoppingCart }) => {
               setShoppingCart={setShoppingCart}
               id={meal.id}
               index={index}
+              subTotal={subTotal}
+              setSubTotal={setSubTotal}
+              bigTotal={bigTotal}
+              setBigTotal={setBigTotal}
+              deliveryFees={deliveryFees}
             />
           );
         })}

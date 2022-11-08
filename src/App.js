@@ -17,6 +17,9 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [shoppingCart, setShoppingCart] = useState([]);
+  const [subTotal, setSubTotal] = useState(0);
+  const [bigTotal, setBigTotal] = useState(2.5);
+  const deliveryFees = 2.5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,6 +68,11 @@ function App() {
                     meals={cat.meals}
                     shoppingCart={shoppingCart}
                     setShoppingCart={setShoppingCart}
+                    subTotal={subTotal}
+                    setSubTotal={setSubTotal}
+                    bigTotal={bigTotal}
+                    setBigTotal={setBigTotal}
+                    deliveryFees={deliveryFees}
                   />
                 );
               } else {
@@ -116,6 +124,11 @@ function App() {
           <ShoppingCart
             shoppingCart={shoppingCart}
             setShoppingCart={setShoppingCart}
+            subTotal={subTotal}
+            setSubTotal={setSubTotal}
+            bigTotal={bigTotal}
+            setBigTotal={setBigTotal}
+            deliveryFees={deliveryFees}
           />
         </div>
       </main>

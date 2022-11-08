@@ -8,7 +8,11 @@ const MenuItemCard = ({
   shoppingCart,
   setShoppingCart,
   id,
-  index,
+  subTotal,
+  setSubTotal,
+  bigTotal,
+  setBigTotal,
+  deliveryFees,
 }) => {
   return (
     <div
@@ -29,6 +33,13 @@ const MenuItemCard = ({
                 newShoppingCart[i].price * newShoppingCart[i].quantity;
               newShoppingCart[i].total = newTotal.toFixed(2);
               setShoppingCart(newShoppingCart);
+              const intSubTotal = parseFloat(price) + parseFloat(subTotal);
+              const newSubTotal = intSubTotal.toFixed(2);
+              setSubTotal(newSubTotal);
+              const intBigTotal =
+                parseFloat(newSubTotal) + parseFloat(deliveryFees);
+              const newBigTotal = intBigTotal.toFixed(2);
+              setBigTotal(newBigTotal);
             }
           }
           if (!isPresent) {
@@ -45,6 +56,13 @@ const MenuItemCard = ({
             //   price * newShoppingCart[index].quantity;
             // console.log(shoppingCart.id);
             setShoppingCart(newShoppingCart);
+            const intSubTotal = parseFloat(subTotal) + parseFloat(price);
+            const newSubTotal = intSubTotal.toFixed(2);
+            setSubTotal(newSubTotal);
+            const intBigTotal =
+              parseFloat(newSubTotal) + parseFloat(deliveryFees);
+            const newBigTotal = intBigTotal.toFixed(2);
+            setBigTotal(newBigTotal);
           }
 
           // console.log(newShoppingCart);
