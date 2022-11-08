@@ -16,11 +16,19 @@ const ShoppingCart = ({ shoppingCart, setShoppingCart }) => {
                       className="minus-btn"
                       onClick={() => {
                         const newShoppingCart = [...shoppingCart];
-                        newShoppingCart[index].quantity =
-                          newShoppingCart[index].quantity - 1;
-                        newShoppingCart[index].total =
-                          item.price * newShoppingCart[index].quantity;
-                        setShoppingCart(newShoppingCart);
+                        if (newShoppingCart[index].quantity > 1) {
+                          newShoppingCart[index].quantity =
+                            newShoppingCart[index].quantity - 1;
+                          //   newShoppingCart[index].total =
+                          //     item.price * newShoppingCart[index].quantity;
+                          const newTotal =
+                            item.price * newShoppingCart[index].quantity;
+                          newShoppingCart[index].total = newTotal.toFixed(2);
+                          setShoppingCart(newShoppingCart);
+                        } else {
+                          newShoppingCart.splice([index], 1);
+                          setShoppingCart(newShoppingCart);
+                        }
                       }}
                     />
                     <span>{item.quantity}</span>
@@ -31,8 +39,11 @@ const ShoppingCart = ({ shoppingCart, setShoppingCart }) => {
                         const newShoppingCart = [...shoppingCart];
                         newShoppingCart[index].quantity =
                           newShoppingCart[index].quantity + 1;
-                        newShoppingCart[index].total =
+                        // newShoppingCart[index].total =
+                        //   item.price * newShoppingCart[index].quantity;
+                        const newTotal =
                           item.price * newShoppingCart[index].quantity;
+                        newShoppingCart[index].total = newTotal.toFixed(2);
                         setShoppingCart(newShoppingCart);
                       }}
                     />

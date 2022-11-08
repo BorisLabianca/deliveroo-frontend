@@ -23,8 +23,11 @@ const MenuItemCard = ({
             if (newShoppingCart[i].id === id) {
               isPresent = true;
               newShoppingCart[i].quantity = newShoppingCart[i].quantity + 1;
-              newShoppingCart[i].total =
+              // newShoppingCart[i].total =
+              //   newShoppingCart[i].price * newShoppingCart[i].quantity;
+              const newTotal =
                 newShoppingCart[i].price * newShoppingCart[i].quantity;
+              newShoppingCart[i].total = newTotal.toFixed(2);
               setShoppingCart(newShoppingCart);
             }
           }
