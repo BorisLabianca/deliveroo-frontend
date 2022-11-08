@@ -1,19 +1,23 @@
 import MenuItemCard from "./MenuItemCard";
-const Category = ({ name, meal }) => {
+const Category = ({ name, meals, shoppingCart, setShoppingCart }) => {
   return (
     <div className="each-category">
       <h2 className="restaurant-name">{name}</h2>
       <div className="menu-item-card">
-        {meal.map((cat, index) => {
+        {meals.map((meal, index) => {
           // console.log(cat);
           return (
             <MenuItemCard
-              key={index}
-              title={cat.title}
-              description={cat.description}
-              picture={cat.picture}
-              price={cat.price}
-              popular={cat.popular}
+              key={meal.id}
+              title={meal.title}
+              description={meal.description}
+              picture={meal.picture}
+              price={meal.price}
+              popular={meal.popular}
+              shoppingCart={shoppingCart}
+              setShoppingCart={setShoppingCart}
+              id={meal.id}
+              index={index}
             />
           );
         })}

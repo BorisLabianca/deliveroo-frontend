@@ -1,17 +1,52 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const MenuItemCard = ({ title, description, picture, price, popular }) => {
+const MenuItemCard = ({
+  title,
+  description,
+  picture,
+  price,
+  popular,
+  shoppingCart,
+  setShoppingCart,
+  id,
+  index,
+}) => {
   return (
-    <div className="card">
+    <div
+      className="card"
+      onClick={() => {
+        // console.log(title, price, id);
+        const newShoppingCart = [...shoppingCart];
+        // console.log(shoppingCart);
+        if (!shoppingCart[index]) {
+          newShoppingCart.push({
+            title: title,
+            price: price,
+            id: id,
+            quantity: 1,
+            total: price,
+          });
+        } else {
+          newShoppingCart[index].quantity = newShoppingCart[index].quantity + 1;
+          newShoppingCart[index].total =
+            price * newShoppingCart[index].quantity;
+          // console.log(shoppingCart.id);
+        }
+
+        // console.log(newShoppingCart);
+        setShoppingCart(newShoppingCart);
+        // console.log(newShoppingCart);
+      }}
+    >
       <div className="menu-info">
         <h3 className="menu-name">{title}</h3>
         {description && <p className="menu-description">{description}</p>}
         <div className="price-pop">
           <span className="price">{price} €</span>
-          {popular ? (
+          {popular && (
             <span className="populaire">
               <FontAwesomeIcon icon="star" /> Populaire
             </span>
-          ) : null}
+          )}
         </div>
       </div>
       {picture && <img className="item-pic" src={picture} alt="Meal" />}
