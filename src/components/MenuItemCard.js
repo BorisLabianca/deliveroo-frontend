@@ -13,29 +13,42 @@ const MenuItemCard = ({
   return (
     <div
       className="card"
-      onClick={() => {
-        // console.log(title, price, id);
-        const newShoppingCart = [...shoppingCart];
-        // console.log(shoppingCart);
-        if (!shoppingCart[index]) {
-          newShoppingCart.push({
-            title: title,
-            price: price,
-            id: id,
-            quantity: 1,
-            total: price,
-          });
-        } else {
-          newShoppingCart[index].quantity = newShoppingCart[index].quantity + 1;
-          newShoppingCart[index].total =
-            price * newShoppingCart[index].quantity;
-          // console.log(shoppingCart.id);
-        }
+      onClick={
+        () => {
+          // console.log(title, price, id);
+          const newShoppingCart = [...shoppingCart];
+          // console.log(shoppingCart);
+          let isPresent = false;
+          for (let i = 0; i < shoppingCart.length; i++) {
+            if (newShoppingCart[i].id === id) {
+              isPresent = true;
+              newShoppingCart[i].quantity = newShoppingCart[i].quantity + 1;
+              newShoppingCart[i].total =
+                newShoppingCart[i].price * newShoppingCart[i].quantity;
+              setShoppingCart(newShoppingCart);
+            }
+          }
+          if (!isPresent) {
+            newShoppingCart.push({
+              title: title,
+              price: price,
+              id: id,
+              quantity: 1,
+              total: price,
+            });
+            // } else {
+            // newShoppingCart[index].quantity = newShoppingCart[index].quantity + 1;
+            // newShoppingCart[index].total =
+            //   price * newShoppingCart[index].quantity;
+            // console.log(shoppingCart.id);
+            setShoppingCart(newShoppingCart);
+          }
 
+          // console.log(newShoppingCart);
+          // setShoppingCart(newShoppingCart);
+        }
         // console.log(newShoppingCart);
-        setShoppingCart(newShoppingCart);
-        // console.log(newShoppingCart);
-      }}
+      }
     >
       <div className="menu-info">
         <h3 className="menu-name">{title}</h3>
